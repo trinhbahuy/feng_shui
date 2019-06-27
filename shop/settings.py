@@ -25,7 +25,7 @@ SECRET_KEY = '%shj-q%l(wuhnh0w#rws+k5qihp@m0%-nc9w_z_96gw!z==mjd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.76']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,7 +85,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
+            'read_default_file': '/etc/my.cnf',
         },
     }
 }
