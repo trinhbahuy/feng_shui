@@ -6,6 +6,27 @@ from django.template import loader
 
 from django.urls import reverse
 
+from django.contrib.auth import authenticate, login as user_login, logout as user_logout
+
 def index(request):
-	question = "xxx"
-	return render(request, 'store/index.html', {'question': question})
+    question = "xxx"
+    return render(request, 'store/index.html', {'question': question})
+
+def login(request):
+    if request.method == 'POST' :
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user :
+            user_login(request, user)
+            return render(request, 'store/user.html')
+        else :
+            return HttpResponse("invalid")
+    return render(request, 'store/login.html')
+
+def logout(request):
+    user_logout(request)
+    return render(request, 'store/login.html')
+
+def user(request):
+    return render(request, 'store/user.html')
