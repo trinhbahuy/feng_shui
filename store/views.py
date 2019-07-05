@@ -17,21 +17,27 @@ def shop(request):
 def product(request):
     return render(request, 'store/product.html')
 
-def login(request):
-    if request.method == 'POST' :
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user :
-            user_login(request, user)
-            return render(request, 'store/user.html')
-        else :
-            return HttpResponse("invalid")
-    return render(request, 'store/login.html')
+def cart(request):
+    return render(request, 'store/cart.html')
 
-def logout(request):
-    user_logout(request)
-    return render(request, 'store/login.html')
+def checkout(request):
+    return render(request, 'store/checkout.html')
 
-def user(request):
-    return render(request, 'store/user.html')
+# def login(request):
+#     if request.method == 'POST' :
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user :
+#             user_login(request, user)
+#             return render(request, 'store/user.html')
+#         else :
+#             return HttpResponse("invalid")
+#     return render(request, 'store/login.html')
+
+# def logout(request):
+#     user_logout(request)
+#     return render(request, 'store/login.html')
+
+# def user(request):
+#     return render(request, 'store/user.html')
