@@ -11,6 +11,11 @@ from django.contrib.auth import authenticate, login as user_login, logout as use
 def index(request):
     question = "xxx"
     return render(request, 'store/index.html', {'question': question})
+def shop(request):
+    return render(request, 'store/shop.html')
+
+def product(request):
+    return render(request, 'store/product.html')
 
 def login(request):
     if request.method == 'POST' :
