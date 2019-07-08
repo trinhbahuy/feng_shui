@@ -23,6 +23,11 @@ class Product(models.Model):
     status = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
     discount = models.IntegerField(default=0)
+    image = models.FileField(upload_to = 'store/static/img/product', blank=True, null=True)
+    
     def __str__(self):
         return self.name
+
+    def getFileName(self):
+        return self.image.url.split("/")[-1]
         

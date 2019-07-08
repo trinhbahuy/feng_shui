@@ -7,9 +7,18 @@ from .models import MainCategory, Category, Product
 #     fields = ['pub_date', 'question_text']
 class ProductInline(admin.StackedInline):
     model = Product
-    extra = 3
+    extra = 1
+
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [ProductInline]
 
+class CategoryInline(admin.StackedInline):
+    model = Category
+    extra = 1
+
+class MainCategoryAdmin(admin.ModelAdmin):
+    inlines = [CategoryInline]
+
+admin.site.register(MainCategory, MainCategoryAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product)
