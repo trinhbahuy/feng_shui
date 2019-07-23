@@ -2,17 +2,26 @@
 {% load static %}
 {% block content %}
    <div class="shop_sidebar_area">
-
             <!-- ##### Single Widget ##### -->
             <div class="widget catagory mb-50">
                 <!-- Widget Title -->
                 <h6 class="widget-title mb-30">Catagories</h6>
 
                 <!--  Catagories  -->
-                <div class="catagories-menu">
-                    <ul>
-                        {% for category in categories %}
-                        <li class="active"><a href="#">{{ category.name }}</a></li>
+                <div class="catagories-menu collapse d-md-flex bg-light pt-2 min-vh-100">
+                    <ul class="nav">
+                        {% for main_category in main_categories %}
+                        <li>
+                            <!-- <a href="#">{{ category.name }}</a> -->
+                            <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#main{{ main_category.id }}">{{ main_category.name }}</a>
+                                <div class="collapse" id="main{{ main_category.id }}">
+                                    <ul class="flex-column pl-2 nav">
+                                        {% for category in main_category.category_set.all %}
+                                        <li class="nav-item"><a class="nav-link py-0" href="/store/shop/{{ category.id }}">{{ category.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>

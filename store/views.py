@@ -14,10 +14,15 @@ def index(request):
     question = "xxx"
     return render(request, 'store/index.html', {'question': question})
 
-def shop(request):
-    products = Product.objects.all();
-    categories = Category.objects.all(); 
-    return render(request, 'store/shop.html', {'products': products, 'categories': categories})
+def shop(request, category_id):
+    categories = Category.objects.all() 
+    main_categories = MainCategory.objects.all()
+    if(category_id == 0):
+        products = Product.objects.all()
+    else:
+        category = Category.objects.get(pk = category_id)
+        products = category.product_set.all
+    return render(request, 'store/shop.html', {'products': products, 'categories': categories, 'main_categories': main_categories})
 
 def product(request):
     return render(request, 'store/product.html')
