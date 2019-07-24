@@ -24,8 +24,9 @@ def shop(request, category_id):
         products = category.product_set.all
     return render(request, 'store/shop.html', {'products': products, 'categories': categories, 'main_categories': main_categories})
 
-def product(request):
-    return render(request, 'store/product.html')
+def product(request, product_id):
+    product = Product.objects.get(pk = 1)
+    return render(request, 'store/product.html', {'product': product})
 
 def cart(request):
     return render(request, 'store/cart.html')
